@@ -1,3 +1,4 @@
+import 'package:admin_pannal/logic/services/get_cart_model.dart';
 import 'package:admin_pannal/logic/services/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -23,8 +24,26 @@ Future addProductToFireStore(ProductModel product, String nameCollection) {
 }
 
 
+CollectionReference<AddToAllCartToAdmin> getAdminCartDataFromFirebase(
+    String nameCollection) {
+  return FirebaseFirestore.instance
+      .collection(nameCollection)
+      .withConverter<AddToAllCartToAdmin>(
+    fromFirestore: (docSnapshot, _) {
+      return AddToAllCartToAdmin.fromJson(docSnapshot.data()!);
+    },
+    toFirestore: (clientM, _) {
+      return clientM.toJson();
+    },
+  );
+}
 
 
+Stream<QuerySnapshot<AddToAllCartToAdmin>> getAdminProductFromFireStore(
+    String nameCollection) {
+  var collection = getAdminCartDataFromFirebase(nameCollection);
+  return collection.snapshots();
+}
 
 
 

@@ -1,3 +1,4 @@
+import 'package:admin_pannal/view/screens/cart_screen.dart';
 import 'package:admin_pannal/view/screens/cosmetic_screen.dart';
 import 'package:admin_pannal/view/screens/home_Health_core_screen.dart';
 import 'package:admin_pannal/view/screens/medical_tools_screen.dart';
@@ -16,6 +17,19 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.green,
         title: const Text("HomeScreen"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CartScreen(),
+                ),
+              );
+            },
+            icon: Icon(Icons.card_travel),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -34,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  MedicineScreen(),
+                      builder: (context) => MedicineScreen(),
                     ),
                   );
                 }),
@@ -62,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                 }),
                 const SizedBox(width: 10),
                 cardCategroy("Home Health core", () {
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const HomeHealthCoreScreen(),
@@ -75,7 +89,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               children: [
                 cardCategroy("Medical Tools", () {
-                      Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MedicalToolsScreen(),
@@ -84,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                 }),
                 const SizedBox(width: 10),
                 cardCategroy("Vitamins", () {
-                    Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const VitaminsScreen(),
